@@ -27,7 +27,7 @@ class HomeController extends Controller
     {
         $userID = Auth::user()->id;
         $headers = [];
-        $data = DB::table('trades')->join('indices', 'indices.id', '=', 'trades.code')->where('owner', $userID)->orderBy('code')->get();
+        $data = DB::table('trades')->join('indices', 'indices.id', '=', 'trades.code')->join('categories', 'categories.id', '=', 'indices.category_id')->where('owner', $userID)->orderBy('code')->get(['categories.name', 'indices.id', 'indices.name','trades.*']);
         $data = json_decode(json_encode($data), true);
         if (!empty($data)) {
             $headers = array_keys($data[array_key_first($data)]);
