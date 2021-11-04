@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use TCG\Voyager\Models\Page;
 
-class CreateMasterTable extends Migration
+class CreateTradesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateMasterTable extends Migration
     public function up()
     {
         // Create table for storing roles
-        Schema::create('master', function (Blueprint $table) {
+        Schema::create('trades', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code');
             $table->integer('qty')->default(0);
@@ -32,6 +32,6 @@ class CreateMasterTable extends Migration
      */
     public function down()
     {
-        Schema::drop('master');
+        Schema::drop('trades');
     }
 }
