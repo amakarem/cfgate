@@ -14,8 +14,9 @@ class CreateIndexTable extends Migration
     public function up()
     {
         // Create table for storing roles
-        Schema::create('index', function (Blueprint $table) {
+        Schema::create('fundindex', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('author_id');
             $table->string('name', 30)->unique();
             $table->integer('category_id')->nullable();
             $table->string('currency', 3)->nullable();
@@ -35,6 +36,6 @@ class CreateIndexTable extends Migration
      */
     public function down()
     {
-        Schema::drop('index');
+        Schema::drop('fundindex');
     }
 }
