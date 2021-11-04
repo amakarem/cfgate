@@ -31,7 +31,7 @@ class HomeController extends Controller
             ->join('indices', 'indices.id', '=', 'trades.code')
             ->join('categories', 'categories.id', '=', 'indices.category_id')
             ->where('owner', $userID)
-            ->groupBy(['categories.name AS category', 'indices.id as index_id', 'indices.name'])
+            ->groupBy('categories.name AS category', 'indices.id as index_id', 'indices.name')
             ->sum(['trades.qty', 'trades.value', 'trades.income'])
             ->orderBy('indices.name')
             ->get();
