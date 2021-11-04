@@ -29,9 +29,8 @@ class HomeController extends Controller
         $headers = [];
         $data = DB::table('trades')->where('owner', $userID)->orderBy('code')->get();
         $data = json_decode(json_encode($data), true);
-        foreach ($data as $row) {
-            $headers = array_keys($row);
-            break;
+        if (!empty($data)) {
+            $headers = array_keys($data[array_key_first($data)]);
         }
         $var['headers'] = $headers;
         $var['data'] = $data;
