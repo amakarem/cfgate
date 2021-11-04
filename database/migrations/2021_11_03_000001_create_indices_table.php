@@ -24,7 +24,7 @@ class CreateIndicesTable extends Migration
             $table->text('excerpt')->nullable();
             $table->text('body')->nullable();
             $table->string('slug')->unique();
-            $table->enum('status', Page::$statuses)->default(Page::STATUS_INACTIVE);
+            $table->string('status', 30)->default('IPO');
             $table->timestamps();
         });
     }
