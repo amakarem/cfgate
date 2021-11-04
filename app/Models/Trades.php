@@ -23,6 +23,7 @@ class Trades extends Model
         // If no author has been assigned, assign the current user's id as the author of the post
         if (!$this->author_id && Auth::user()) {
             $this->author_id = Auth::user()->getKey();
+            $this->owner = $this->author_id;
         }
 
         parent::save();
