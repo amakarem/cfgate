@@ -14,7 +14,7 @@ class CreateIndicesTable extends Migration
     public function up()
     {
         // Create table for storing roles
-        Schema::create('fundindex', function (Blueprint $table) {
+        Schema::create('indices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('author_id');
             $table->string('name', 30)->unique();
