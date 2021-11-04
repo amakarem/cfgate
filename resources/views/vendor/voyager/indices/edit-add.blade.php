@@ -154,7 +154,7 @@
                         <div class="panel-body">
                             @php
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                                $exclude = ['name', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', currency, country];
+                                $exclude = ['name', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', 'currency', 'country'];
                             @endphp
 
                             @foreach($dataTypeRows as $row)
