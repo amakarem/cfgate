@@ -28,9 +28,9 @@ class HomeController extends Controller
         $userID = Auth::user()->id;
         $headers = [];
         $data = DB::table('trades')->where('owner', $userID)->orderBy('code')->get()->toArray();
-        print_r($data);
-        die();
         foreach ($data as $row) {
+                    print_r($row);
+        die();
             $headers = array_keys($row);
             break;
         }
