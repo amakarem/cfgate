@@ -9,7 +9,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\Resizable;
 use TCG\Voyager\Traits\Translatable;
 
-class Index extends Model
+class FundIndex extends Model
 {
     use Translatable;
     use Resizable;
@@ -30,6 +30,11 @@ class Index extends Model
         parent::save();
     }
 
+    public function authorId()
+    {
+        return $this->belongsTo(Voyager::modelClass('User'), 'author_id', 'id');
+    }
+    
     /**
      * Scope a query to only published scopes.
      *
