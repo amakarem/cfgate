@@ -224,48 +224,24 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="featured">{{ __('voyager::generic.featured') }}</label>
-                                <input type="checkbox" name="featured"@if(isset($dataTypeContent->featured) && $dataTypeContent->featured) checked="checked"@endif>
+                                <label for="status">{{ __('voyager::index.country') }}</label>
+                                <select class="form-control" name="country">
+                                    <option value="PUBLISHED"@if(isset($dataTypeContent->country) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::index.status_published') }}</option>
+                                    <option value="DRAFT"@if(isset($dataTypeContent->country) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::index.status_draft') }}</option>
+                                    <option value="PENDING"@if(isset($dataTypeContent->country) && $dataTypeContent->status == 'PENDING') selected="selected"@endif>{{ __('voyager::index.status_pending') }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">{{ __('voyager::index.currency') }}</label>
+                                <select class="form-control" name="currency">
+                                    <option value="PUBLISHED"@if(isset($dataTypeContent->currency) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::index.status_published') }}</option>
+                                    <option value="DRAFT"@if(isset($dataTypeContent->currency) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::index.status_draft') }}</option>
+                                    <option value="PENDING"@if(isset($dataTypeContent->currency) && $dataTypeContent->status == 'PENDING') selected="selected"@endif>{{ __('voyager::index.status_pending') }}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ### IMAGE ### -->
-                    <div class="panel panel-bordered panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-image"></i> {{ __('voyager::index.image') }}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            @if(isset($dataTypeContent->image))
-                                <img src="{{ filter_var($dataTypeContent->image, FILTER_VALIDATE_URL) ? $dataTypeContent->image : Voyager::image( $dataTypeContent->image ) }}" style="width:100%" />
-                            @endif
-                            <input type="file" name="image">
-                        </div>
-                    </div>
-
-                    <div class="panel panel-bordered panel-info">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label for="country">{{ __('voyager::index.country') }}</label>
-                                @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'country',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'country')
-                                ])
-                                <textarea class="form-control" name="country">{{ $dataTypeContent->country ?? '' }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="currency">{{ __('voyager::index.currency') }}</label>
-                                @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'currency',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'currency')
-                                ])
-                                <input type="text" class="form-control" name="currency" placeholder="SEO Title" value="{{ $dataTypeContent->currency ?? '' }}">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -277,14 +253,6 @@
             @yield('submit-buttons')
         </form>
 
-        <iframe id="form_target" name="form_target" style="display:none"></iframe>
-        <form id="my_form" action="{{ route('voyager.upload') }}" target="form_target" method="index"
-                enctype="multipart/form-data" style="width:0;height:0;overflow:hidden">
-            <input name="image" id="upload_file" type="file"
-                     onchange="$('#my_form').submit();this.value='';">
-            <input type="hidden" name="type_slug" id="type_slug" value="{{ $dataType->slug }}">
-            {{ csrf_field() }}
-        </form>
     </div>
 
     <div class="modal fade modal-danger" id="confirm_delete_modal">
