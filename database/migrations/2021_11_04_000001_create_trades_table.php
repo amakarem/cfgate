@@ -22,7 +22,7 @@ class CreateTradesTable extends Migration
             $table->integer('qty')->default(0);
             $table->string('value', 30)->default(0);
             $table->string('income', 30)->default(0);
-            $table->enum('status', Page::$statuses)->default(Page::STATUS_INACTIVE);
+            $table->string('status', 30)->default('DRAFT');
             $table->timestamps();
         });
     }
