@@ -32,6 +32,11 @@ class Trades extends Model
     {
         return $this->belongsTo(Voyager::modelClass('User'), 'author_id', 'id');
     }
+
+    public function owner()
+    {
+        return $this->belongsTo(Voyager::modelClass('User'), 'owner', 'id');
+    }
     
     /**
      * Scope a query to only published scopes.
