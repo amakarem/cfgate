@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', 'App\Http\Controllers\PublicController@index')->name('homepage');
+
+Route::get('/{slag}', 'App\Http\Controllers\PublicController@page')->name('page');
+Route::get('/post/{slag}', 'App\Http\Controllers\PublicController@post')->name('post');
 
 
 Route::group(['prefix' => 'admin'], function () {
