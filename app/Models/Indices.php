@@ -16,8 +16,6 @@ class Indices extends Model
 
     protected $translatable = ['name', 'excerpt', 'body', 'slug'];
 
-    const ACTIVE = 'ACTIVE';
-
     protected $guarded = [];
 
     public function save(array $options = [])
@@ -44,7 +42,7 @@ class Indices extends Model
      */
     public function scopePublished(Builder $query)
     {
-        return $query->where('status', '=', static::ACTIVE);
+        return $query->where('status', '=', 'ACTIVE');
     }
 
     /**
@@ -52,6 +50,6 @@ class Indices extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Voyager::modelClass('Categories'));
+        return $this->belongsTo(Voyager::modelClass('category'));
     }
 }
