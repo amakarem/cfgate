@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use TCG\Voyager\Models\Page;
 
-class CreateIndexTable extends Migration
+class CreateFundIndexTable extends Migration
 {
     /**
      * Run the migrations.
