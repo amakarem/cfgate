@@ -16,6 +16,8 @@ class CreateTradesTable extends Migration
         // Create table for storing roles
         Schema::create('trades', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('author_id');
+            $table->integer('owner');
             $table->string('code');
             $table->integer('qty')->default(0);
             $table->string('value', 30)->default(0);
