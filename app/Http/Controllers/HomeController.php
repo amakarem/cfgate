@@ -33,7 +33,7 @@ class HomeController extends Controller
             ->where('owner', $userID)
             ->groupBy('categories.name', 'indices.id', 'indices.name')
             ->sum('trades.qty', 'trades.value', 'trades.income')
-            ->orderBy('category', 'name')
+            //->orderBy('category', 'name')
             ->get(['categories.name AS category', 'indices.id as index_id', 'indices.name', 'trades.qty', 'trades.value', 'trades.income']);
         $data = json_decode(json_encode($data), true);
         if (!empty($data)) {
