@@ -31,6 +31,27 @@ class HomeController extends Controller
             ->join('indices', 'indices.id', '=', 'trades.code')
             ->join('categories', 'categories.id', '=', 'indices.category_id')
             ->where('owner', $userID)
+            ->groupBy('categories.name AS category', 'indices.id as index_id', 'indices.name')
+             ->sum('trades.qty', 'trades.value','trades.income');
+            ->orderBy('code')
+            ->get();
+        $data = json_decode(json_encode($data), true);
+        if (!empty($data)) {
+            $headers = array_keys($data[array_key_first($data)]);
+        }
+        $var['headers'] = $headers;
+        $var['data'] = $data;
+        $var['title'] = 'Portofolio';
+        return view('home', $var);
+    }
+    public function trades()
+    {
+        $userID = Auth::user()->id;
+        $headers = [];
+        $data = DB::table('trades')
+            ->join('indices', 'indices.id', '=', 'trades.code')
+            ->join('categories', 'categories.id', '=', 'indices.category_id')
+            ->where('owner', $userID)
             ->orderBy('code')
             ->get(['categories.name AS category', 'indices.id as index_id', 'indices.name','trades.id','trades.qty','trades.value','trades.income','trades.status', 'trades.Updated_at as date']);
         $data = json_decode(json_encode($data), true);
@@ -39,7 +60,7 @@ class HomeController extends Controller
         }
         $var['headers'] = $headers;
         $var['data'] = $data;
-        $var['title'] = 'Dashboard';
+        $var['title'] = 'Orders';
         return view('home', $var);
     }
 }
