@@ -22,6 +22,13 @@ class Category extends \TCG\Voyager\Models\Category
             ->published()
             ->orderBy('created_at', 'DESC');
     }
+
+    public function Indices()
+    {
+        return $this->hasMany(Voyager::modelClass('Indices'))
+            ->published()
+            ->orderBy('created_at');
+    }
     
     public function parentId()
     {
