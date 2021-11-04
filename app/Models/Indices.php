@@ -9,7 +9,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\Resizable;
 use TCG\Voyager\Traits\Translatable;
 
-class Fundindices extends Model
+class Indices extends Model
 {
     use Translatable;
     use Resizable;
