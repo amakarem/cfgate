@@ -50,6 +50,6 @@ class Indices extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Voyager::modelClass('category'));
+        return $this->belongsTo(Voyager::modelClass('Categories'));
     }
 }
