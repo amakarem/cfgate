@@ -26,9 +26,15 @@ class HomeController extends Controller
     public function index()
     {
         $userID = Auth::user()->id;
-        $var = array(
-            'data' => DB::table('trades')->whereRaw($whereraw)->where('owner', $userID)->orderBy('code')->get()->toArray();
-        );
+        $headers = [];
+        $data = DB::table('trades')->whereRaw($whereraw)->where('owner', $userID)->orderBy('code')->get()->toArray();
+        foreach ($data as $row) {
+            $headers = array_keys($row);
+            break;
+        }
+        $var['headers'] = $headers;
+        $var['data'] = $data;
+        $var['title'] = 'Dashboard';
         return view('home', $var);
     }
 }
