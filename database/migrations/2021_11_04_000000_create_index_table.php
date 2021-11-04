@@ -16,10 +16,10 @@ class CreateIndexTable extends Migration
         // Create table for storing roles
         Schema::create('index', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name', 30)->unique();
             $table->integer('category_id')->nullable();
-            $table->string('currency')->nullable();
-            $table->string('country')->nullable();
+            $table->string('currency', 3)->nullable();
+            $table->string('country', 30)->nullable();
             $table->text('excerpt')->nullable();
             $table->text('body')->nullable();
             $table->string('slug')->unique();
