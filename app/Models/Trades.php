@@ -34,7 +34,7 @@ class Trades extends Model
         return $this->belongsTo(Voyager::modelClass('User'), 'author_id', 'id');
     }
 
-    public function owner()
+    public function ownerId()
     {
         return $this->belongsTo(Voyager::modelClass('User'), 'owner', 'id');
     }
